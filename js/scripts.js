@@ -1,15 +1,21 @@
 $(function() {
-$("#formone").submit(function(event) {
-event.preventDefault();
+  $("#formone").submit(function(event) {
 
-var input = $("input#sent").val();
+    var sentence = $("input#sent").val();
+    var sentenceArray= sentence.split(" ");
+    var newSentenceArray = [];
 
-console.log(input);
-var newArray= input.split(" ",3);
-$("#output").text(newArray);
+    sentenceArray.forEach(function(word){
+      if (word.length >= 3){
+        newSentenceArray.push(word);
+      }
 
-$("#output").show();
+    });
 
-});
+    newSentenceArray.reverse();
+    var outputString = newSentenceArray.join(" ");
+    $(".output").prepend(outputString);
+    event.preventDefault();
+  });
 
 });
